@@ -1,4 +1,4 @@
-<?php // app/Controllers/Admin/Contacts.php
+<?php
 
 namespace App\Controllers\Admin;
 

@@ -1,4 +1,4 @@
-<?php // app/Database/Seeds/UserSeeder.php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -10,12 +10,11 @@ class UserSeeder extends Seeder
     {
         $data = [
             'username' => 'admin',
-            'password' => password_hash('password', PASSWORD_DEFAULT), // Hash password 'password'
+            'password' => password_hash('password', PASSWORD_DEFAULT),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
-        // Simple insert, as it's just one admin user for now
         $this->db->table('users')->insert($data);
 
         // Tambahkan data awal untuk settings

@@ -1,4 +1,4 @@
-<?php // app/Views/admin/reviews/index.php
+<?php
 
 $this->extend('admin/layouts/default');
 $this->section('content');
@@ -29,14 +29,14 @@ $this->section('content');
                             <td class="py-3 px-4 text-gray-700 max-w-xs overflow-hidden text-ellipsis whitespace-nowrap"><?= esc($review['content']) ?></td>
                             <td class="py-3 px-4">
                                 <span class="px-3 py-1 rounded-full text-xs font-semibold
-                                    <?= $review['is_approved'] ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
-                                    <?= $review['is_approved'] ? 'Disetujui' : 'Menunggu' ?>
+                                    <?= $review['status'] == "approved" ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
+                                    <?= $review['status'] == "approved" ? 'Disetujui' : 'Menunggu' ?>
                                 </span>
                             </td>
                             <td class="py-3 px-4 flex space-x-2">
                                 <a href="<?= site_url('admin/reviews/toggle/' . $review['id']) ?>"
                                     class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-full text-sm transition duration-200">
-                                    <?= $review['is_approved'] ? 'Sembunyikan' : 'Setujui' ?>
+                                    <?= $review['status'] == "approved" ? 'Sembunyikan' : 'Setujui' ?>
                                 </a>
                                 <a href="<?= site_url('admin/reviews/delete/' . $review['id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus ulasan ini?');" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-full text-sm transition duration-200">Hapus</a>
                             </td>

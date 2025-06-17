@@ -1,5 +1,4 @@
-<?php // app/Controllers/Admin/Promos.php
-// FILE INI SUDAH DIUPDATE UNTUK MEMPERBAIKI JALUR UPLOAD GAMBAR.
+<?php
 
 namespace App\Controllers\Admin;
 
@@ -49,14 +48,13 @@ class Promos extends BaseController
         $imageFile = $this->request->getFile('image');
         $newName   = $imageFile->getRandomName();
 
-        // Jalur unggah yang dikoreksi: LANGSUNG KE 'assets/img/promos' dari direktori public
         $uploadPath = 'assets/img/promos';
         if (!is_dir(FCPATH . $uploadPath)) {
             mkdir(FCPATH . $uploadPath, 0777, true);
         }
 
         if ($imageFile->isValid() && ! $imageFile->hasMoved()) {
-            $imageFile->move(FCPATH . $uploadPath, $newName); // Pindahkan ke public/assets/img/promos
+            $imageFile->move(FCPATH . $uploadPath, $newName);
             $imagePath = $uploadPath . '/' . $newName;
         } else {
             return redirect()->back()->withInput()->with('error', 'Gagal mengunggah gambar. ' . $imageFile->getErrorString());
@@ -116,20 +114,17 @@ class Promos extends BaseController
             'description' => $this->request->getPost('description'),
         ];
 
-        // Penanganan upload gambar baru
         if ($imageFile && $imageFile->isValid() && ! $imageFile->hasMoved()) {
-            // Hapus gambar lama jika ada
             if ($promo['image'] && file_exists(FCPATH . $promo['image'])) {
                 unlink(FCPATH . $promo['image']);
             }
 
             $newName = $imageFile->getRandomName();
-            // Jalur unggah yang dikoreksi
             $uploadPath = 'assets/img/promos';
             if (!is_dir(FCPATH . $uploadPath)) {
                 mkdir(FCPATH . $uploadPath, 0777, true);
             }
-            $imageFile->move(FCPATH . $uploadPath, $newName); // Pindahkan ke public/assets/img/promos
+            $imageFile->move(FCPATH . $uploadPath, $newName);
             $data['image'] = $uploadPath . '/' . $newName;
         }
 
@@ -146,7 +141,6 @@ class Promos extends BaseController
             return redirect()->back()->with('error', 'Promo tidak ditemukan.');
         }
 
-        // Hapus file gambar terkait jika ada
         if ($promo['image'] && file_exists(FCPATH . $promo['image'])) {
             unlink(FCPATH . $promo['image']);
         }

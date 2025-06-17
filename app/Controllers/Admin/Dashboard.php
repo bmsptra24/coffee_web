@@ -1,4 +1,4 @@
-<?php // app/Controllers/Admin/Dashboard.php
+<?php
 
 namespace App\Controllers\Admin;
 

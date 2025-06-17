@@ -1,11 +1,8 @@
-<?php // app/Views/home/index.php
-// FILE INI SUDAH DIUPDATE UNTUK TAMPILAN YANG LEBIH ESTETIK DAN GAMBAR HERO DINAMIS.
-
+<?php
 $this->extend('layouts/default');
 $this->section('content');
 ?>
 
-<!-- Hero Section - Increased visual appeal with darker overlay and more prominent text -->
 <section id="home" class="relative h-screen flex items-center justify-center text-center text-text-light"
     style="background-image: url('<?= base_url($hero_image) ?>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="hero-overlay absolute inset-0 bg-black opacity-60"></div> <!-- Darker overlay for contrast -->
@@ -33,7 +30,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- Featured Menu Section - Enhanced card design, subtle animations -->
 <section id="menu" class="py-20 bg-gradient-to-br from-secondary-beige to-white">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16 text-primary-coffee relative pb-4">
@@ -72,7 +68,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- About Us Section - More engaging layout with image -->
 <section id="about" class="py-20 bg-white">
     <div class="container mx-auto px-8 flex flex-col md:flex-row items-center gap-16">
         <div class="md:w-1/2 text-center md:text-left animate-fade-in-left">
@@ -93,7 +88,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- Location & Opening Hours Section - Clearer layout, better map integration -->
 <section id="location" class="py-20 bg-secondary-beige">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16 text-primary-coffee relative pb-4">
@@ -123,7 +117,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- Promo Section - More visually appealing promo cards -->
 <section id="promo" class="py-20 bg-white">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16 text-primary-coffee relative pb-4">
@@ -157,7 +150,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- Customer Reviews Section - Improved carousel with subtle styling -->
 <section id="reviews" class="py-20 bg-secondary-beige">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16 text-primary-coffee relative pb-4">
@@ -176,7 +168,6 @@ $this->section('content');
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <!-- Simple carousel navigation if needed, could be added with JS -->
             </div>
         <?php else: ?>
             <p class="text-gray-600 text-xl py-10">Belum ada ulasan yang ditampilkan.</p>
@@ -184,7 +175,6 @@ $this->section('content');
     </div>
 </section>
 
-<!-- Submit Review Section -->
 <section id="submit-review" class="py-20 bg-primary-coffee text-text-light">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16 relative pb-4">
@@ -240,7 +230,6 @@ $this->section('content');
 </section>
 
 
-<!-- Contact Form Section - Enhanced form styling and validation display -->
 <section id="contact" class="py-20 bg-primary-coffee text-text-light">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-5xl font-bold mb-16">Hubungi Kami</h2>

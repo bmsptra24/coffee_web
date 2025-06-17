@@ -1,4 +1,4 @@
-<?php // app/Views/admin/dashboard/index.php
+<?php
 
 $this->extend('admin/layouts/default');
 $this->section('content');

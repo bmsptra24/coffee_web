@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin | Kafe Kopi Mantap</title>
-    <!-- Tailwind CSS JIT Browser Compilation -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style type="text/tailwindcss">
-        /* Mendefinisikan warna kustom Tailwind CSS menggunakan @theme */
         @theme {
-            --color-primary-coffee: #8B4513; /* Coklat kopi */
-            --color-secondary-beige: #F5F5DC; /* Beige lembut */
-            --color-accent-gold: #FFD700;    /* Emas aksen */
-            --color-text-dark: #333333;      /* Teks gelap */
-            --color-text-light: #F8F8F8;     /* Teks terang */
+            --color-primary-coffee: #8B4513;
+            --color-secondary-beige: #F5F5DC;
+            --color-accent-gold: #FFD700;
+            --color-text-dark: #333333;
+            --color-text-light: #F8F8F8;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-secondary-beige); /* Menggunakan warna kustom untuk latar belakang */
+            background-color: var(--color-secondary-beige);
             color: var(--color-text-dark);
         }
-        /* Menggunakan custom scrollbar seperti di frontend */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -104,12 +101,11 @@
         </div>
     </div>
     <script>
-        // Auto-hide success/error/info messages after 5 seconds
         const messages = document.querySelectorAll('.flash-message');
         messages.forEach(message => {
             setTimeout(() => {
                 message.remove();
-            }, 5000); // Remove message after 5 seconds
+            }, 5000);
         });
     </script>
 </body>

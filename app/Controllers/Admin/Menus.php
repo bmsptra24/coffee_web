@@ -1,5 +1,4 @@
-<?php // app/Controllers/Admin/Menus.php
-// FILE INI SUDAH DIUPDATE UNTUK MEMPERBAIKI JALUR UPLOAD GAMBAR.
+<?php
 
 namespace App\Controllers\Admin;
 
@@ -50,14 +49,13 @@ class Menus extends BaseController
         $imageFile = $this->request->getFile('image');
         $newName   = $imageFile->getRandomName();
 
-        // Jalur unggah yang dikoreksi: LANGSUNG KE 'assets/img/menus' dari direktori public
         $uploadPath = 'assets/img/menus';
         if (!is_dir(FCPATH . $uploadPath)) {
             mkdir(FCPATH . $uploadPath, 0777, true);
         }
 
         if ($imageFile->isValid() && ! $imageFile->hasMoved()) {
-            $imageFile->move(FCPATH . $uploadPath, $newName); // Pindahkan ke public/assets/img/menus
+            $imageFile->move(FCPATH . $uploadPath, $newName);
             $imagePath = $uploadPath . '/' . $newName;
         } else {
             return redirect()->back()->withInput()->with('error', 'Gagal mengunggah gambar. ' . $imageFile->getErrorString());
@@ -122,20 +120,17 @@ class Menus extends BaseController
             'is_featured' => $this->request->getPost('is_featured') ? 1 : 0,
         ];
 
-        // Penanganan upload gambar baru
         if ($imageFile && $imageFile->isValid() && ! $imageFile->hasMoved()) {
-            // Hapus gambar lama jika ada
             if ($menu['image'] && file_exists(FCPATH . $menu['image'])) {
                 unlink(FCPATH . $menu['image']);
             }
 
             $newName = $imageFile->getRandomName();
-            // Jalur unggah yang dikoreksi
             $uploadPath = 'assets/img/menus';
             if (!is_dir(FCPATH . $uploadPath)) {
                 mkdir(FCPATH . $uploadPath, 0777, true);
             }
-            $imageFile->move(FCPATH . $uploadPath, $newName); // Pindahkan ke public/assets/img/menus
+            $imageFile->move(FCPATH . $uploadPath, $newName);
             $data['image'] = $uploadPath . '/' . $newName;
         }
 
@@ -152,7 +147,6 @@ class Menus extends BaseController
             return redirect()->back()->with('error', 'Menu tidak ditemukan.');
         }
 
-        // Hapus file gambar terkait jika ada
         if ($menu['image'] && file_exists(FCPATH . $menu['image'])) {
             unlink(FCPATH . $menu['image']);
         }

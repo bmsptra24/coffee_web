@@ -1,4 +1,4 @@
-<?php // app/Controllers/Admin/Reviews.php
+<?php
 
 namespace App\Controllers\Admin;
 
@@ -31,11 +31,10 @@ class Reviews extends BaseController
             return redirect()->to(site_url('admin/reviews'))->with('error', 'Ulasan tidak ditemukan.');
         }
 
-        // Toggle status is_approved
-        $newStatus = ($review['is_approved'] == 1) ? 0 : 1;
+        $newStatus = ($review['status'] === 'approved') ? 'pending' : 'approved';
 
-        if ($this->reviewModel->update($id, ['is_approved' => $newStatus])) {
-            $message = ($newStatus == 1) ? 'Ulasan berhasil disetujui!' : 'Ulasan berhasil disembunyikan!';
+        if ($this->reviewModel->update($id, ['status' => $newStatus])) {
+            $message = ($newStatus === 'approved') ? 'Ulasan berhasil disetujui!' : 'Ulasan berhasil diset ulang ke pending!';
             return redirect()->to(site_url('admin/reviews'))->with('success', $message);
         } else {
             return redirect()->to(site_url('admin/reviews'))->with('error', 'Gagal mengubah status ulasan.');
@@ -53,27 +52,20 @@ class Reviews extends BaseController
 
     public function submit()
     {
-        // Validasi input
         $rules = [
             'author'  => 'required|min_length[3]|max_length[100]',
             'content' => 'required|min_length[10]|max_length[1000]',
         ];
 
-        // Jika validasi gagal
         if (! $this->validate($rules)) {
             return redirect()->back()->withInput()->with('review_errors', $this->validator->getErrors());
         }
 
-        // Ambil data dari POST request
         $data = [
             'author'  => $this->request->getPost('author'),
             'content' => $this->request->getPost('content'),
-            // Status akan diatur oleh beforeInsert callback di ReviewModel menjadi 'pending'
-            // atau bisa diatur di sini jika Anda tidak menggunakan callback di model:
-            // 'status'  => 'pending',
         ];
 
-        // Simpan data ulasan ke database
         if ($this->reviewModel->insert($data)) {
             return redirect()->to(site_url('/#submit-review'))->with('review_success', 'Terima kasih! Ulasan Anda telah terkirim dan akan ditinjau.');
         } else {

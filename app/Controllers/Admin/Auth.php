@@ -1,4 +1,4 @@
-<?php // app/Controllers/Admin/Auth.php
+<?php
 
 namespace App\Controllers\Admin;
 
@@ -17,23 +17,20 @@ class Auth extends BaseController
 
     public function login()
     {
-        // Jika sudah login, arahkan ke dashboard
         if (session()->get('isLoggedIn')) {
             return redirect()->to(site_url('admin'));
         }
-        $data['validation'] = \Config\Services::validation(); // Untuk menampilkan error validasi
+        $data['validation'] = \Config\Services::validation();
         echo view('admin/auth/login', $data);
     }
 
     public function attemptLogin()
     {
-        // Atur rules validasi
         $rules = [
             'username' => 'required|min_length[3]|max_length[100]',
             'password' => 'required|min_length[6]',
         ];
 
-        // Jalankan validasi
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -43,27 +40,23 @@ class Auth extends BaseController
 
         $user = $this->userModel->getUserByUsername($username);
 
-        // Periksa kredensial
         if ($user && password_verify($password, $user['password'])) {
-            // Login berhasil, atur session
             $sessionData = [
                 'user_id'    => $user['id'],
                 'username'   => $user['username'],
                 'isLoggedIn' => true,
-                'role'       => 'admin', // Bisa ditambahkan jika ada role lain
+                'role'       => 'admin',
             ];
             session()->set($sessionData);
 
             return redirect()->to(site_url('admin'))->with('success', 'Selamat datang, ' . $user['username'] . '!');
         } else {
-            // Login gagal
             return redirect()->back()->withInput()->with('error', 'Username atau password salah.');
         }
     }
 
     public function logout()
     {
-        // Hapus semua session
         session()->destroy();
         return redirect()->to(site_url('admin/auth'))->with('info', 'Anda telah berhasil logout.');
     }

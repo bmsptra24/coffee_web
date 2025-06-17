@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style type="text/tailwindcss">
-        /* Mendefinisikan warna kustom Tailwind CSS menggunakan @theme */
         @theme {
             --color-primary-coffee: #8B4513; /* Coklat kopi */
             --color-secondary-beige: #F5F5DC; /* Beige lembut */
